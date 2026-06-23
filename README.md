@@ -1,11 +1,21 @@
-<div align="center">
+# Sukunsh Portfolio
 
-<img width="1200" height="475" alt="GHBanner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
+A plain Vite + React portfolio for Sukunsh. It runs locally without API keys, secrets, or external service setup.
 
-  <h1>Built with AI Studio</h2>
+## Local Development
 
-  <p>The fastest path from prompt to production with Gemini.</p>
+Prerequisite: Node.js
 
-  <a href="https://aistudio.google.com/apps">Start building</a>
+```bash
+npm install
+npm run dev
+```
 
-</div>
+Vite will print the local preview URL in the terminal.
+
+## Build
+
+```bash
+npm run build
+npm run preview
+```
