@@ -7,16 +7,18 @@ interface NavbarProps {
   onOpenAIWork?: () => void;
   onOpenResume?: () => void;
   onOpenAboutMe?: () => void;
+  onOpenGitHub?: () => void;
   onNavigate?: (targetId: string) => void;
 }
 
 const NAV_ITEMS = [
   { label: "Home", href: "#home" },
   { label: "Projects", href: "#scroll-demo" },
+  { label: "GitHub", href: "#github" },
   { label: "Hire me", href: "#contact" },
 ];
 
-export default function Navbar({ profile, onNavigate, onOpenProjects, onOpenAIWork }: NavbarProps) {
+export default function Navbar({ profile, onNavigate, onOpenProjects, onOpenAIWork, onOpenGitHub }: NavbarProps) {
   const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
     e.preventDefault();
 
@@ -32,6 +34,11 @@ export default function Navbar({ profile, onNavigate, onOpenProjects, onOpenAIWo
 
     if (href === "#showreel" && onOpenAIWork) {
       onOpenAIWork();
+      return;
+    }
+
+    if (href === "#github" && onOpenGitHub) {
+      onOpenGitHub();
       return;
     }
 

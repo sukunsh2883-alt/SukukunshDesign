@@ -18,6 +18,7 @@ import AIWorkExplorer from "./components/AIWorkExplorer";
 import FullResumeModal from "./components/FullResumeModal";
 import AboutMeModal from "./components/AboutMeModal";
 import ScrollShowcase from "./components/ScrollShowcase";
+import GitHubExplorer from "./components/GitHubExplorer";
 
 // State Engines and Credentials
 import {
@@ -139,6 +140,7 @@ export default function App() {
   const [isResumeOpen, setIsResumeOpen] = useState(false);
   const [isAboutMeOpen, setIsAboutMeOpen] = useState(false);
   const [isScrollShowcaseOpen, setIsScrollShowcaseOpen] = useState(false);
+  const [isGitHubExplorerOpen, setIsGitHubExplorerOpen] = useState(false);
 
   const closePortals = () => {
     setIsProjectsExplorerOpen(false);
@@ -146,9 +148,10 @@ export default function App() {
     setIsResumeOpen(false);
     setIsAboutMeOpen(false);
     setIsScrollShowcaseOpen(false);
+    setIsGitHubExplorerOpen(false);
   };
 
-  const openPortal = (portal: "projects" | "ai-work" | "resume" | "about" | "scroll-demo") => {
+  const openPortal = (portal: "projects" | "ai-work" | "resume" | "about" | "scroll-demo" | "github") => {
     closePortals();
 
     if (portal === "projects") {
@@ -159,6 +162,8 @@ export default function App() {
       setIsResumeOpen(true);
     } else if (portal === "scroll-demo") {
       setIsScrollShowcaseOpen(true);
+    } else if (portal === "github") {
+      setIsGitHubExplorerOpen(true);
     } else {
       setIsAboutMeOpen(true);
     }
@@ -288,6 +293,8 @@ export default function App() {
       openPortal("resume");
     } else if (targetId === "#about-me-modal") {
       openPortal("about");
+    } else if (targetId === "#github") {
+      openPortal("github");
     } else {
       // Small delay to allow any transition state to settle, then scroll to section
       setTimeout(() => {
@@ -401,6 +408,7 @@ export default function App() {
                   isResumeOpen ? "full-resume" :
                   isAIWorkExplorerOpen ? "ai-work" :
                   isProjectsExplorerOpen ? "projects" :
+                  isGitHubExplorerOpen ? "github" :
                   activeSection
                 }
                 onNavigate={handleNavigate}
@@ -408,6 +416,7 @@ export default function App() {
                 onOpenAIWork={() => handleNavigate("#ai-work")}
                 onOpenResume={() => handleNavigate("#full-resume")}
                 onOpenAboutMe={() => handleNavigate("#about-me-modal")}
+                onOpenGitHub={() => handleNavigate("#github")}
               />
             )}
 
@@ -560,6 +569,15 @@ export default function App() {
                   isOpen={isAboutMeOpen}
                   onClose={closePortalWithHistory}
                   profile={profileState}
+                />
+              )}
+            </AnimatePresence>
+
+            <AnimatePresence>
+              {isGitHubExplorerOpen && (
+                <GitHubExplorer
+                  isOpen={isGitHubExplorerOpen}
+                  onClose={closePortalWithHistory}
                 />
               )}
             </AnimatePresence>
