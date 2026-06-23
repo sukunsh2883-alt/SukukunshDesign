@@ -14,7 +14,6 @@ interface NavbarProps {
 const NAV_ITEMS = [
   { label: "Home", href: "#home" },
   { label: "Projects", href: "#scroll-demo" },
-  { label: "GitHub", href: "#github" },
   { label: "Hire me", href: "#contact" },
 ];
 

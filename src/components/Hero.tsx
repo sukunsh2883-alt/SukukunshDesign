@@ -41,8 +41,8 @@ export default function Hero({ profile, onOpenProjects, onOpenAIWork }: HeroProp
   const stageRef = useRef<HTMLDivElement | null>(null);
 
   const [stageScale] = useState<number>(() => {
-    const saved = localStorage.getItem("sukunsh_stage_scale");
-    return saved ? parseFloat(saved) : 0.90;
+    const saved = localStorage.getItem("sukunsh_stage_scale_v2");
+    return saved ? parseFloat(saved) : 1.15;
   });
   const [stageY] = useState<number>(() => {
     const saved = localStorage.getItem("sukunsh_stage_y");

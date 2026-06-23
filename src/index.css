@@ -498,7 +498,7 @@ header *,
   overflow: visible;
   position: relative;
   transform: translateY(var(--svg-y-offset, 4vh));
-  width: calc(min(185vw, 2480px, calc((100svh - 64px) * 1.858)) * var(--svg-scale-multiplier, 0.90));
+  width: calc(min(185vw, 2480px, calc((100svh - 64px) * 1.858)) * var(--svg-scale-multiplier, 1.15));
 }
 
 .hero-scroll-base {
@@ -746,7 +746,7 @@ header *,
     margin-bottom: 0 !important;
     overflow: visible;
     transform: translateY(calc(8vh + var(--svg-y-offset, 4vh))) !important;
-    width: calc(min(162vw, calc((100svh - 40px) * 1.858)) * var(--svg-scale-multiplier, 0.90)) !important;
+    width: calc(min(162vw, calc((100svh - 40px) * 1.858)) * var(--svg-scale-multiplier, 1.15)) !important;
   }
 
   .svg-stage > svg:not(.beetle-svg) {
@@ -823,7 +823,7 @@ header *,
     margin-bottom: 0 !important;
     overflow: visible;
     transform: translateY(calc(6vh + var(--svg-y-offset, 4vh))) !important;
-    width: calc(min(175vw, calc((100svh - 40px) * 1.858)) * var(--svg-scale-multiplier, 0.90)) !important;
+    width: calc(min(175vw, calc((100svh - 40px) * 1.858)) * var(--svg-scale-multiplier, 1.15)) !important;
   }
 
   .svg-stage > svg:not(.beetle-svg) {
