@@ -2,6 +2,7 @@ import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { X, Sparkles, Play, ChevronRight } from "lucide-react";
+import { DesignProject } from "../portfolioData";
 
 const PROJECT_THUMBNAILS = [
   "https://res.cloudinary.com/dylv5m3jk/image/upload/q_auto/f_auto/v1782056275/image_44_cmxx0z.png",
@@ -16,12 +17,29 @@ const PROJECT_THUMBNAILS = [
 interface ScrollShowcaseProps {
   onClose?: () => void;
   isInline?: boolean;
+  designs?: DesignProject[];
   onOpenProjects?: () => void;
   onOpenVideo?: (videoUrl: string, title: string) => void;
 }
 
-export default function ScrollShowcase({ onClose, isInline = false, onOpenProjects, onOpenVideo }: ScrollShowcaseProps) {
+export default function ScrollShowcase({ onClose, isInline = false, designs = [], onOpenProjects, onOpenVideo }: ScrollShowcaseProps) {
   const containerRef = useRef<HTMLDivElement | null>(null);
+
+  const getProjectData = (index: number) => {
+    if (designs && designs.length > 0) {
+      const item = designs[index % designs.length];
+      return {
+        image: item.image || PROJECT_THUMBNAILS[index % PROJECT_THUMBNAILS.length],
+        title: item.title || "Fine Art Design Project",
+        link: item.link || "https://www.behance.net/sukunshsharma"
+      };
+    }
+    return {
+      image: PROJECT_THUMBNAILS[index % PROJECT_THUMBNAILS.length],
+      title: "Fine Art Design Project",
+      link: "https://www.behance.net/sukunshsharma"
+    };
+  };
 
   useEffect(() => {
     // Register GSAP plugins
@@ -336,14 +354,14 @@ export default function ScrollShowcase({ onClose, isInline = false, onOpenProjec
             <div className="column-content grid grid-rows-3 gap-6">
               <div className="grid-image relative overflow-hidden rounded-2xl bg-neutral-900 shadow-md w-full h-full">
                 <a
-                  href="https://www.behance.net/sukunshsharma"
+                  href={getProjectData(0).link}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="absolute inset-0 block w-full h-full cursor-pointer group"
                 >
                   <img
-                    src={PROJECT_THUMBNAILS[0]}
-                    alt="Fine Art Photography"
+                    src={getProjectData(0).image}
+                    alt={getProjectData(0).title}
                     className="absolute inset-0 w-full h-full object-cover select-none transition-transform duration-500 ease-out group-hover:scale-110 brightness-100 group-hover:brightness-110"
                     draggable={false}
                   />
@@ -351,14 +369,14 @@ export default function ScrollShowcase({ onClose, isInline = false, onOpenProjec
               </div>
               <div className="grid-image relative overflow-hidden rounded-2xl bg-neutral-900 shadow-md w-full h-full">
                 <a
-                  href="https://www.behance.net/sukunshsharma"
+                  href={getProjectData(1).link}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="absolute inset-0 block w-full h-full cursor-pointer group"
                 >
                   <img
-                    src={PROJECT_THUMBNAILS[1]}
-                    alt="Risography Art & Illustration"
+                    src={getProjectData(1).image}
+                    alt={getProjectData(1).title}
                     className="absolute inset-0 w-full h-full object-cover select-none transition-transform duration-500 ease-out group-hover:scale-110 brightness-100 group-hover:brightness-110"
                     draggable={false}
                   />
@@ -366,14 +384,14 @@ export default function ScrollShowcase({ onClose, isInline = false, onOpenProjec
               </div>
               <div className="grid-image relative overflow-hidden rounded-2xl bg-neutral-900 shadow-md w-full h-full">
                 <a
-                  href="https://www.behance.net/sukunshsharma"
+                  href={getProjectData(2).link}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="absolute inset-0 block w-full h-full cursor-pointer group"
                 >
                   <img
-                    src={PROJECT_THUMBNAILS[2]}
-                    alt="Motion Showcase Study"
+                    src={getProjectData(2).image}
+                    alt={getProjectData(2).title}
                     className="absolute inset-0 w-full h-full object-cover select-none transition-transform duration-500 ease-out group-hover:scale-110 brightness-100 group-hover:brightness-110"
                     draggable={false}
                   />
@@ -387,14 +405,14 @@ export default function ScrollShowcase({ onClose, isInline = false, onOpenProjec
             <div className="column-content grid grid-rows-3 gap-6">
               <div className="grid-image relative overflow-hidden rounded-2xl bg-neutral-900 shadow-md w-full h-full">
                 <a
-                  href="https://www.behance.net/sukunshsharma"
+                  href={getProjectData(3).link}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="absolute inset-0 block w-full h-full cursor-pointer group"
                 >
                   <img
-                    src={PROJECT_THUMBNAILS[3]}
-                    alt="Visual Branding Studio"
+                    src={getProjectData(3).image}
+                    alt={getProjectData(3).title}
                     className="absolute inset-0 w-full h-full object-cover select-none transition-transform duration-500 ease-out group-hover:scale-110 brightness-100 group-hover:brightness-110"
                     draggable={false}
                   />
@@ -402,14 +420,14 @@ export default function ScrollShowcase({ onClose, isInline = false, onOpenProjec
               </div>
               <div className="grid-image relative overflow-hidden rounded-2xl bg-neutral-900 shadow-md w-full h-full">
                 <a
-                  href="https://www.behance.net/sukunshsharma"
+                  href={getProjectData(4).link}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="absolute inset-0 block w-full h-full cursor-pointer group"
                 >
                   <img
-                    src={PROJECT_THUMBNAILS[4]}
-                    alt="Corporate Typography Logo Design"
+                    src={getProjectData(4).image}
+                    alt={getProjectData(4).title}
                     className="absolute inset-0 w-full h-full object-cover select-none transition-transform duration-500 ease-out group-hover:scale-110 brightness-100 group-hover:brightness-110"
                     draggable={false}
                   />
@@ -417,14 +435,14 @@ export default function ScrollShowcase({ onClose, isInline = false, onOpenProjec
               </div>
               <div className="grid-image relative overflow-hidden rounded-2xl bg-neutral-900 shadow-md w-full h-full">
                 <a
-                  href="https://www.behance.net/sukunshsharma"
+                  href={getProjectData(5).link}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="absolute inset-0 block w-full h-full cursor-pointer group"
                 >
                   <img
-                    src={PROJECT_THUMBNAILS[5]}
-                    alt="Creative Infographics Evacuation Map"
+                    src={getProjectData(5).image}
+                    alt={getProjectData(5).title}
                     className="absolute inset-0 w-full h-full object-cover select-none transition-transform duration-500 ease-out group-hover:scale-110 brightness-100 group-hover:brightness-110"
                     draggable={false}
                   />
@@ -438,14 +456,14 @@ export default function ScrollShowcase({ onClose, isInline = false, onOpenProjec
             <div className="column-content grid grid-rows-3 gap-6">
               <div className="grid-image relative overflow-hidden rounded-2xl bg-neutral-900 shadow-md w-full h-full">
                 <a
-                  href="https://www.behance.net/sukunshsharma"
+                  href={getProjectData(6).link}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="absolute inset-0 block w-full h-full cursor-pointer group"
                 >
                   <img
-                    src={PROJECT_THUMBNAILS[6]}
-                    alt="Frame-by-Frame Character Run Cycle"
+                    src={getProjectData(6).image}
+                    alt={getProjectData(6).title}
                     className="absolute inset-0 w-full h-full object-cover select-none transition-transform duration-500 ease-out group-hover:scale-110 brightness-100 group-hover:brightness-110"
                     draggable={false}
                   />
@@ -453,14 +471,14 @@ export default function ScrollShowcase({ onClose, isInline = false, onOpenProjec
               </div>
               <div className="grid-image relative overflow-hidden rounded-2xl bg-neutral-900 shadow-md w-full h-full">
                 <a
-                  href="https://www.behance.net/sukunshsharma"
+                  href={getProjectData(7 % Math.max(1, designs.length)).link}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="absolute inset-0 block w-full h-full cursor-pointer group"
                 >
                   <img
-                    src={PROJECT_THUMBNAILS[0]}
-                    alt="Tactile Anatomy suspension photo"
+                    src={getProjectData(7).image}
+                    alt={getProjectData(7).title}
                     className="absolute inset-0 w-full h-full object-cover select-none transition-transform duration-500 ease-out group-hover:scale-110 brightness-100 group-hover:brightness-110"
                     draggable={false}
                   />
@@ -468,14 +486,14 @@ export default function ScrollShowcase({ onClose, isInline = false, onOpenProjec
               </div>
               <div className="grid-image relative overflow-hidden rounded-2xl bg-neutral-900 shadow-md w-full h-full">
                 <a
-                  href="https://www.behance.net/sukunshsharma"
+                  href={getProjectData(8 % Math.max(1, designs.length)).link}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="absolute inset-0 block w-full h-full cursor-pointer group"
                 >
                   <img
-                    src={PROJECT_THUMBNAILS[1]}
-                    alt="Risography duplicator layering"
+                    src={getProjectData(8).image}
+                    alt={getProjectData(8).title}
                     className="absolute inset-0 w-full h-full object-cover select-none transition-transform duration-500 ease-out group-hover:scale-110 brightness-100 group-hover:brightness-110"
                     draggable={false}
                   />

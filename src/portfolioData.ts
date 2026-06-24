@@ -191,20 +191,20 @@ export const aiFilms: AIFilm[] = [
 // Selected Design Works List
 export const designProjects: DesignProject[] = [
   {
-    id: "design-photography",
-    title: "Action Photography",
-    type: "Fine Art Photography",
-    year: "2021",
+    id: "AI film",
+    title: "Ai short Film",
+    type: "Film",
+    year: "2026",
     description: "Academic photo communication study capturing extreme body elasticity, suspension leaps, and somatic contour lighting.",
-    image: "https://res.cloudinary.com/dylv5m3jk/image/upload/q_auto/f_auto/v1782056275/image_44_cmxx0z.png",
+    image: "https://res.cloudinary.com/dylv5m3jk/image/upload/v1782300043/Slide_16_9_-_28_dy5t4r.png",
     tools: ["Studio Spotlight Rigging", "Motion Capture", "Contrast Optimization", "Academic Layouts"],
     link: "mailto:sukunsh3882@gmail.com",
     client: "College of Art, Delhi University",
     aboutProject: "Action photography is an incredibly exciting genre to shoot. Under the guidance of Mr. Parveen Kumar, the study explores body contouring using high-density side lighting and extreme raw athleticism. It illustrates suspension, equilibrium, and spatial trajectory transitions in darkness.",
     galleryImages: [
-      "https://res.cloudinary.com/dylv5m3jk/image/upload/q_auto/f_auto/v1782056275/image_44_cmxx0z.png",
-      "https://images.unsplash.com/photo-1508215891331-9f11d4007551?q=80&w=1200&auto=format&fit=crop",
-      "https://images.unsplash.com/photo-1547153760-18fc86324498?q=80&w=1200&auto=format&fit=crop"
+      "https://res.cloudinary.com/dylv5m3jk/image/upload/v1782300043/Slide_16_9_-_28_dy5t4r.png",
+      "https://res.cloudinary.com/dylv5m3jk/image/upload/v1782300043/Slide_16_9_-_28_dy5t4r.png",
+      "https://res.cloudinary.com/dylv5m3jk/image/upload/v1782300043/Slide_16_9_-_28_dy5t4r.png"
     ]
   },
   {

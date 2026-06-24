@@ -5,7 +5,8 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 const lines = [
   "I’m a Delhi-based visual artist,",
   "rooted in Bihar’s rich cultural heritage,",
-  "with a background in Fine Art and Design."
+  "bridging the worlds of Fine Art & Design,",
+  "to craft bold, emotional, story-driven visuals."
 ];
 
 export default function AboutMist() {

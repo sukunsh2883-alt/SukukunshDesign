@@ -24,6 +24,45 @@ const FILTERS = [
   { id: "other design works", label: "other design works" }
 ];
 
+const UPCOMING_PROJECTS = [
+  {
+    id: "upcoming-1",
+    title: "Brand Identity Framework",
+    type: "branding",
+    image: "https://res.cloudinary.com/dylv5m3jk/image/upload/q_auto/f_auto/v1782056275/image_44_cmxx0z.png"
+  },
+  {
+    id: "upcoming-2",
+    title: "Cinematic Motion Graphics",
+    type: "motion design",
+    image: "https://res.cloudinary.com/dylv5m3jk/image/upload/q_auto/f_auto/v1782056275/image_45_v8v8q2.png"
+  },
+  {
+    id: "upcoming-3",
+    title: "Spatial Interface Lab",
+    type: "ui ux",
+    image: "https://res.cloudinary.com/dylv5m3jk/image/upload/q_auto/f_auto/v1782056275/image_46_p7u9p1.png"
+  },
+  {
+    id: "upcoming-4",
+    title: "Experimental Risography",
+    type: "illustration",
+    image: "https://res.cloudinary.com/dylv5m3jk/image/upload/q_auto/f_auto/v1782056275/image_47_x8c8q3.png"
+  },
+  {
+    id: "upcoming-5",
+    title: "Kinetic Identity Monogram",
+    type: "logo design",
+    image: "https://res.cloudinary.com/dylv5m3jk/image/upload/q_auto/f_auto/v1782056275/image_48_y2c8p4.png"
+  },
+  {
+    id: "upcoming-6",
+    title: "Interactive Wayfinding Study",
+    type: "infographic design",
+    image: "https://res.cloudinary.com/dylv5m3jk/image/upload/q_auto/f_auto/v1782056275/image_49_b7v8r5.png"
+  }
+];
+
 export default function ProjectsExplorer({ isOpen, onClose, projects, onSelectProject }: ProjectsExplorerProps) {
   const [selectedFilter, setSelectedFilter] = useState("all");
   const containerRef = React.useRef<HTMLDivElement>(null);
@@ -86,6 +125,13 @@ export default function ProjectsExplorer({ isOpen, onClose, projects, onSelectPr
     });
   }, [selectedFilter, projects]);
 
+  const filteredUpcoming = useMemo(() => {
+    return UPCOMING_PROJECTS.filter((project) => {
+      if (selectedFilter === "all") return true;
+      return project.type === selectedFilter;
+    });
+  }, [selectedFilter]);
+
   if (!isOpen) return null;
 
   return (
@@ -142,7 +188,7 @@ export default function ProjectsExplorer({ isOpen, onClose, projects, onSelectPr
           </div>
 
           {/* Seamless Content Grid Streams */}
-          {filteredProjects.length > 0 ? (
+          {(filteredProjects.length > 0 || filteredUpcoming.length > 0) ? (
             <motion.div 
               layout
               className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-12"
@@ -194,6 +240,52 @@ export default function ProjectsExplorer({ isOpen, onClose, projects, onSelectPr
                   </div>
 
                 </motion.a>
+              ))}
+
+              {/* Render 6 Upcoming Projects with Adding Soon on Thumbnail */}
+              {filteredUpcoming.map((project, idx) => (
+                <motion.div
+                  layout
+                  key={project.id}
+                  initial={{ opacity: 0, y: 15 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.3, delay: Math.min((filteredProjects.length + idx) * 0.05, 0.45) }}
+                  className="group flex flex-col select-none"
+                >
+                  {/* Card container carrying the overlay image */}
+                  <div className="relative w-full aspect-[1.5] rounded-xl overflow-hidden bg-neutral-950 border border-neutral-800/40 shadow-sm z-0">
+                    
+                    <img
+                      src={project.image}
+                      alt={project.title}
+                      className="w-full h-full object-cover transition-transform duration-[1.2s] ease-[cubic-bezier(0.16,1,0.3,1)] scale-100 opacity-20 filter grayscale saturate-50 contrast-125 brightness-[0.4]"
+                      referrerPolicy="no-referrer"
+                    />
+
+                    {/* Highly polished, vibrant overlay stating ADDING SOON and 6 More Projects */}
+                    <div className="absolute inset-0 flex flex-col items-center justify-center p-4 bg-gradient-to-t from-black/85 via-black/40 to-transparent">
+                      <div className="px-3 py-1.5 rounded-full bg-[#FF6A00]/15 border border-[#FF6A00]/40 text-[#FF6A00] text-[9px] font-mono font-bold tracking-widest uppercase flex items-center gap-1.5 mb-2.5 backdrop-blur-md">
+                        <span className="w-1.5 h-1.5 rounded-full bg-[#FF6A00] animate-pulse" />
+                        <span>ADDING SOON</span>
+                      </div>
+                      <p className="text-white/85 text-[10px] md:text-xs font-mono tracking-widest uppercase font-semibold text-center drop-shadow-sm">
+                        6 More Projects
+                      </p>
+                    </div>
+                  </div>
+
+                  {/* Heading OUT of card with clean editorial weight */}
+                  <div className="mt-4 flex items-baseline flex-wrap gap-2 text-left">
+                    <span className="font-medium text-neutral-400 text-sm sm:text-base tracking-normal">
+                      {project.title}
+                    </span>
+                    <span className="text-neutral-200 font-light select-none">/</span>
+                    <span className="text-neutral-500 text-xs sm:text-sm font-sans font-normal uppercase tracking-wider text-[10px]">
+                      {project.type}
+                    </span>
+                  </div>
+
+                </motion.div>
               ))}
             </motion.div>
           ) : (

@@ -429,6 +429,7 @@ export default function App() {
                     <ScrollShowcase
                       onClose={() => setIsScrollShowcaseOpen(false)}
                       onOpenProjects={() => openPortal("projects")}
+                      designs={designs}
                       onOpenVideo={(videoUrl, title) => {
                         setLightbox({
                           isOpen: true,
@@ -456,6 +457,7 @@ export default function App() {
                       <div id="scroll-demo">
                         <ScrollShowcase
                           isInline={true}
+                          designs={designs}
                           onOpenProjects={() => openPortal("projects")}
                           onOpenVideo={(videoUrl, title) => {
                             setLightbox({

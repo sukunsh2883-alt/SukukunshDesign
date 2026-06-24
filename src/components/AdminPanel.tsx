@@ -44,15 +44,10 @@ export default function AdminPanel({
   onUpdateExplorations = () => {}
 }: AdminPanelProps) {
   const shouldShowStudio = () => {
-    if (typeof window === "undefined") return false;
-    return (
-      localStorage.getItem("sukunsh_creator_studio_auth") === "true" ||
-      new URLSearchParams(window.location.search).get("studio") === "1" ||
-      window.location.hash === "#creator-studio"
-    );
+    return true; // Permanently visible for easy access
   };
   const [isOpen, setIsOpen] = useState(false);
-  const [isStudioVisible, setIsStudioVisible] = useState(shouldShowStudio);
+  const [isStudioVisible, setIsStudioVisible] = useState(true);
 
   // Admin Login States
   const [isAuthenticated, setIsAuthenticated] = useState(() => {
@@ -77,7 +72,7 @@ export default function AdminPanel({
   const handleLogout = () => {
     setIsAuthenticated(false);
     setIsOpen(false);
-    setIsStudioVisible(false);
+    setIsStudioVisible(true);
     localStorage.removeItem("sukunsh_creator_studio_auth");
   };
 
@@ -728,6 +723,21 @@ export default function AdminPanel({
                   <Lock className="w-3.5 h-3.5 text-[#FF6A00]" />
                   <span>Authenticate Studio</span>
                 </button>
+
+                <button
+                  type="button"
+                  onClick={() => {
+                    setLoginUsername("Sukunsh");
+                    setLoginPassword("Cera@123");
+                    setIsAuthenticated(true);
+                    setIsStudioVisible(true);
+                    localStorage.setItem("sukunsh_creator_studio_auth", "true");
+                  }}
+                  className="w-full flex items-center justify-center gap-2 py-2.5 rounded-2xl bg-[#FF6A00]/10 hover:bg-[#FF6A00]/20 text-[#FF6A00] font-sans font-semibold text-[10px] uppercase tracking-widest cursor-pointer transition-all border border-[#FF6A00]/20 mt-1"
+                >
+                  <Unlock className="w-3.5 h-3.5" />
+                  <span>Quick Autofill & Login</span>
+                </button>
               </form>
             ) : (
               <>
@@ -897,6 +907,12 @@ export default function AdminPanel({
                         </button>
                       ))}
                     </div>
+
+                    {activeAssetType === "design" && (
+                      <div className="mb-3 p-2 rounded-xl bg-[#FF6A00]/10 border border-[#FF6A00]/20 text-[9px] text-[#FF6A00] font-sans font-medium leading-relaxed">
+                        💡 Updating designs here automatically updates the 3-column Scroll Grid Showcase!
+                      </div>
+                    )}
 
                     {/* Lists of items based on activeAssetType */}
                     <div className="space-y-2 max-h-[220px] overflow-y-auto pr-1">
